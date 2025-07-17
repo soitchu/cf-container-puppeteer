@@ -5,7 +5,7 @@ export class MyContainer extends Container {
   // Port the container listens on (default: 8080)
   defaultPort = 8080;
   // Time before container sleeps due to inactivity (default: 30s)
-  sleepAfter = "10s";
+  sleepAfter = "1m";
   // Environment variables passed to the container
   envVars = {
     MESSAGE: "I was passed in via the container class!",
