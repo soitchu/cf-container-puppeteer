@@ -10,11 +10,11 @@ app.get("/screenshot/:url", (req, res) => {
 
     try {
       (async () => {
-        const browser = await puppeteer.launch({});
-        // const page = await browser.newPage();
-        // await page.goto(`https://${url}`);
-        // const screenshot = await page.screenshot();
-        await browser.close();
+        // const browser = await puppeteer.launch({});
+        // // const page = await browser.newPage();
+        // // await page.goto(`https://${url}`);
+        // // const screenshot = await page.screenshot();
+        // await browser.close();
 
         // res.setHeader("Content-Type", "image/png");
         // res.send(screenshot);
