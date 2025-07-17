@@ -4,6 +4,7 @@ const app = express();
 const PORT = 8080;
 
 const browser = await puppeteer.launch({
+  executablePath: "/usr/bin/chromium-browser",
   headless: "shell",
   args: ["--no-sandbox"],
   defaultViewport: {
