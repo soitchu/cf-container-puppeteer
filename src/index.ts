@@ -1,4 +1,4 @@
-import { Container, loadBalance, getContainer, getRandom } from "@cloudflare/containers";
+import { Container, loadBalance, getContainer } from "@cloudflare/containers";
 import { Hono } from "hono";
 
 export class MyContainer extends Container {
@@ -32,7 +32,7 @@ const app = new Hono<{
 
 // Home route with available endpoints
 app.get("/screenshot/*", async (c) => {
-  const container = await getRandom(c.env.MY_CONTAINER, 10);
+  const container = getContainer(c.env.MY_CONTAINER);
   return await container.fetch(c.req.raw);
 });
 
