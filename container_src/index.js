@@ -3,22 +3,29 @@ import puppeteer from "puppeteer-core";
 const app = express();
 const PORT = 8080;
 
+const browser = await puppeteer.launch({
+  headless: "shell",
+  args: ["--no-sandbox"],
+  defaultViewport: {
+    width: 400,
+    height: 400,
+  },
+});
+
 app.get("/screenshot/:url", async (req, res) => {
   try {
     const url = req.params.url;
 
     try {
-      const browser = await puppeteer.launch({
-        executablePath: "/usr/bin/chromium",
-        args: ["--no-sandbox"],
-      });
       const page = await browser.newPage();
-      await page.setViewport({ width: 400, height: 400 });
       await page.goto(`https://${url}`);
 
-      const content = await page.content();
+      const screenshot = await page.screenshot({
+        type: "png",
+      });
 
-      res.status(200).send(content);
+      res.setHeader("Content-Type", "image/png");
+      res.status(200).send(screenshot);
       return;
     } catch (error) {
       console.error("Error launching Puppeteer:", error);
