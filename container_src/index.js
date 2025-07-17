@@ -24,6 +24,8 @@ app.get("/screenshot/:url", async (req, res) => {
         type: "png",
       });
 
+      await page.close();
+
       res.setHeader("Content-Type", "image/png");
       res.status(200).send(screenshot);
       return;
