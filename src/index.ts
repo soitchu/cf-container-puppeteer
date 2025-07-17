@@ -32,7 +32,7 @@ const app = new Hono<{
 
 // Home route with available endpoints
 app.get("/screenshot/*", async (c) => {
-  const container = getContainer(c.env.MY_CONTAINER);
+  const container = await loadBalance(c.env.MY_CONTAINER, 10);
   return await container.fetch(c.req.raw);
 });
 
