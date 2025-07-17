@@ -36,6 +36,7 @@ app.get("/screenshot/:url", async (req, res) => {
       await page.close();
 
       res.setHeader("Content-Type", "image/png");
+      res.setHeader("X-memory-usage", JSON.stringify(process.memoryUsage()));
       res.status(200).send(screenshot);
       return;
     } catch (error) {
