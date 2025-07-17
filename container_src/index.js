@@ -1,5 +1,5 @@
 import express from "express";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 const app = express();
 const PORT = 8080;
 
@@ -8,7 +8,10 @@ app.get("/screenshot/:url", async (req, res) => {
     const url = req.params.url;
 
     try {
-      const browser = await puppeteer.launch({});
+      const browser = await puppeteer.launch({
+        executablePath: "/usr/bin/chromium",
+        args: ["--no-sandbox"],
+      });
       const page = await browser.newPage();
       await page.setViewport({ width: 400, height: 400 });
       await page.goto(`https://${url}`);

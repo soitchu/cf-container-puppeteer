@@ -9,6 +9,9 @@ WORKDIR /home/puppeteer
 COPY container_src/index.js ./
 COPY container_src/package.json ./
 
+# Install Chromium
+RUN apk add chromium
+
 # Install dependencies
 RUN npm install
 
